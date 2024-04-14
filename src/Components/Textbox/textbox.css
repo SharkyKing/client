@@ -1,0 +1,15 @@
+.texbox-input {
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    width: 300px;
+    transition: background-color 0.3s ease;
+}
+
+.texbox-input:hover {
+    background-color: var(--primary-color);
+}
+
+p {
+    margin-top: 5px;
+}

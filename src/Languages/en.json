@@ -1,0 +1,9 @@
+{
+    "greeting": "Hello, World!",
+    "error": {
+      "notFound": "Sorry, the page you requested was not found."
+    },
+    "passwordStrength": {
+        "veryweak": "Sorry, the page you requested was not found."
+      }
+  }

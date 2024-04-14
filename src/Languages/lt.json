@@ -1,0 +1,10 @@
+{
+    "home" : "Pagrindinis",
+    "passwordStrength": {
+        "veryweak": "Labai silpnas",
+        "weak": "Silpnas",
+        "moderate": "Galėtų būti geriau",
+        "strong": "Stiprus",
+        "verystrong": "Tobulas"
+    }
+}
