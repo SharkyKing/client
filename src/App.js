@@ -7,7 +7,7 @@ import { paths } from './Additional/paths';
 import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, Profile} from './Panels/imports.js'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const login = () => {
     setIsLoggedIn(true);
