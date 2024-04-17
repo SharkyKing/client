@@ -1,4 +1,4 @@
-import SERVER_URL from '../../Additional/server.js';
+import servers from '../../Additional/server.js';
 
 import axios from 'axios';
 import React, { useState } from 'react';
@@ -7,12 +7,12 @@ import { useNavigate  } from 'react-router-dom';
 import {Button, Textbox} from '../../Components/imports.js'
 import PasswordStrengthMeter from '../../Components/PasswordStrengthMeter/passwordstrengthmeter.js';
 
-import { validateEmail,validateName, validatePassword, isAllEmpty } from '../../Additional/validationutils.js';
+import { validateEmail, validateName, validatePassword, isAllEmpty } from '../../Additional/validationutils.js';
 import { paths } from '../../Additional/paths.js';
 
 import './signup.css'
 
-
+import bcrypt from 'bcryptjs';
 
 function SignUp({login}) {
     const navigate = useNavigate();
@@ -25,6 +25,8 @@ function SignUp({login}) {
     const [submissionFailed, setSubmissionFailed] = useState(false);
     const [submissionFailedMsg, setSubmissionFailedMsg] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const saltRounds = 10;
 
     const handleEmailChange = (event) => {
         setSubmissionFailed(false);
@@ -103,23 +105,22 @@ function SignUp({login}) {
       }
 
       try {
-        const response = await axios.post(`${SERVER_URL}api/user/`, {
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        const response = await axios.post(`${servers.SERVER_URL}api/user/`, {
               email: email,
               firstname: firstname,
               lastname: lastname,
-              password: password
+              password: hashedPassword
         });
         
-        if (response.status !== 200) {
+        if (response.status !== 201) {
             setSubmissionFailed(true);
             setLoading(false);
             throw new Error(response.error);
         }
-        else {
-          const userData = response.data.user;
-          console.log('User created:', userData);
-          resetFields();
-        }
+
+        resetFields();
         setLoading(false);
         login();
         navigate(paths.PROFILE);
@@ -160,7 +161,7 @@ function SignUp({login}) {
               <div className='container-textbox'>
                 <Textbox
                   type="text"
-                  placeholder="firstname"
+                  placeholder="First name"
                   value={firstname}
                   onChange={handlefirstnameChange}
                   className={errors.firstname ? 'error' : ''}
@@ -170,7 +171,7 @@ function SignUp({login}) {
               <div className='container-textbox'>
                 <Textbox
                   type="text"
-                  placeholder="lastname"
+                  placeholder="Last name"
                   value={lastname}
                   onChange={handlelastnameChange}
                   className={errors.lastname ? 'error' : ''}
