@@ -1,14 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {Button, Textbox} from '../../Components/imports.js'
+import React, { useEffect, useMemo, useRef, useState, useContext } from "react";
 import './room.css'
-
-import { SocketContext } from "./socketcontext.js";
+import { CreateRoom } from "../../Components/CreateRoom/createroom.js";
 
 function VideoPlayer() {
+    
     return (
-        <div className="videos">
-            <video playsInline muted  autoPlay className="user-1"></video>
-            <video playsInline  autoPlay className="user-2"></video>
+        <div className="meeting-room">
+            <CreateRoom />
+            <div className="videos">
+                <video playsInline muted  autoPlay className="video-player" id="user-1" controls ></video>
+                <video playsInline  autoPlay className="video-player" id="user-2" controls></video>
+            </div>
         </div>
       );
     }
