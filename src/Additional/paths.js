@@ -5,7 +5,8 @@ export const paths = {
     SIGNUP: '/signup',
     ABOUT: '/about',
     PROFILE: '/profile',
-    ROOM: '/room',
+    JOINROOM: '/room',
+    ROOM: '/room/:roomId',
     WAITING: '/waiting'
   };
   

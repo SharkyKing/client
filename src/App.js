@@ -4,7 +4,7 @@ import NavbarUser from './Panels/Navbar/NavbarUser/navbarUser.js';
 import NavbarGuest from './Panels/Navbar/NavbarGuest/navbarGuest.js';
 import React, { useState } from 'react';
 import { paths } from './Additional/paths';
-import {SignIn, SignUp, Home, Room, Waiting} from './Panels/imports.js'
+import {SignIn, SignUp, Home, Room, RoomJoin ,Waiting} from './Panels/imports.js'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -23,10 +23,11 @@ function App() {
         <div className="App">
           {isLoggedIn ? <NavbarUser logout={logout} /> : <NavbarGuest />}
           <Routes>
-            <Route exact path={paths.HOME} element={<Home />} />
+            <Route path={paths.HOME} element={<Home />} />
             <Route path={paths.SIGNIN} element={<SignIn login={login}  />} />
             <Route path={paths.SIGNUP} element={<SignUp login={login}/>} />
             <Route path={paths.ROOM} element={<Room />} />
+            <Route path={paths.JOINROOM} element={<RoomJoin/>}/>
             <Route path={paths.WAITING} element={<Waiting />} />
           </Routes>
         </div>

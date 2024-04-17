@@ -12,27 +12,27 @@ function NavbarUser({ logout })  {
   return (
     <nav className="navbar">
       <div className="container">
-        <NavLink exact to={paths.HOME} className="navbar-logo">
+        <NavLink to={paths.HOME} className="navbar-logo">
           <img className="navbar-logo" src="/images/connect.png" alt="Logo" />
         </NavLink>
         <ul className="nav-menu">
           <li className="nav-item">
-            <NavLink exact to={paths.WAITING} className="nav-links" activeclassname="active">
+            <NavLink to={paths.WAITING} className="nav-links" activeclassname="active">
               Waiting room
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink exact to={paths.ROOM} className="nav-links" activeclassname="active">
+            <NavLink to={paths.JOINROOM} className="nav-links" activeclassname="active">
               Room
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink exact to={paths.PROFILE} className="nav-links" activeclassname="active">
+            <NavLink to={paths.PROFILE} className="nav-links" activeclassname="active">
               Profile
             </NavLink>
           </li>
           <li className="nav-item-signout">
-            <NavLink exact to={paths.SIGNIN} className="nav-links-signout" onClick={handleLogout}>
+            <NavLink to={paths.SIGNIN} className="nav-links-signout" onClick={handleLogout}>
               Sign out
             </NavLink>
           </li>
