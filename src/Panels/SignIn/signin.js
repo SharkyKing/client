@@ -63,7 +63,7 @@ function SignIn({ login })  {
         }
 
         try {
-            const response = await axios.get(`${servers.SERVER_URL}api/user/${email}`);
+            const response = await axios.get(`${servers.SERVER_URL}api/user/login/${email}`);
             
             if (response.status !== 200) {
                 setLoading(false);
