@@ -114,7 +114,7 @@ function SignUp({login}) {
               password: hashedPassword
         });
         
-        if (response.status !== 201) {
+        if (response.status !== 200) {
             setSubmissionFailed(true);
             setLoading(false);
             throw new Error(response.error);
@@ -166,7 +166,7 @@ function SignUp({login}) {
                   onChange={handlefirstnameChange}
                   className={errors.firstname ? 'error' : ''}
                 />
-                <p className={`error-message ${errors.firstname ? 'show' : ''}`}>{errors.firstname ? 'First name cannot contain numbers or symbols' : '\u00A0'}</p>
+                <p className={`error-message ${errors.firstname ? 'show' : ''}`}>{errors.firstname ? 'First name must contain only letters' : '\u00A0'}</p>
               </div>
               <div className='container-textbox'>
                 <Textbox
@@ -176,7 +176,7 @@ function SignUp({login}) {
                   onChange={handlelastnameChange}
                   className={errors.lastname ? 'error' : ''}
                 />
-                <p className={`error-message ${errors.lastname ? 'show' : ''}`}>{errors.lastname ? 'Last name cannot contain numbers or symbols' : '\u00A0'}</p>
+                <p className={`error-message ${errors.lastname ? 'show' : ''}`}>{errors.lastname ? 'Last name must contain only letters' : '\u00A0'}</p>
               </div>
               <div className='container-textbox'>
                 <Textbox

@@ -2,20 +2,20 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {Button, Textbox} from '../../Components/imports.js'
 import './room.css'
 import io from 'socket.io-client';
-import signalingServer from '../../Additional/signalingserver.js'
+import servers from '../../Additional/server.js'
 import { useParams } from 'react-router-dom';
 
 function Room() {
   const localVideoRef = useRef();
+  const remoteVideoRef = useRef();
   const [socket, setSocket] = useState(null);
   const { roomId } = useParams(); 
-  const [remoteStream, setRemoteStream] = useState(null);
   let localStream;
   let peerConnection;
   const iceCandidatesQueue = [];
 
   useEffect(() => {
-    const socket = io(signalingServer);
+    const socket = io(servers.SIGNALING_SERVER_URL);
     setSocket(socket);
 
     const initializePeerConnection = async () => {
@@ -35,7 +35,7 @@ function Room() {
 
         peerConnection.ontrack = (event) => {
           console.log('Received remote stream:', event.streams[0]);
-          setRemoteStream(event.streams[0]); 
+          remoteVideoRef.current.srcObject = localStream;
         };
 
         const offer = await peerConnection.createOffer();
@@ -87,9 +87,11 @@ function Room() {
     }});
 
     socket.on('answer', async (answer) => {
-      console.log('ANSWER')
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
-      processIceCandidatesQueue();
+      try {
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+      } catch (error) {
+        console.error('Error setting remote description:', error);
+      }
     });
 
     return () => {
@@ -150,7 +152,7 @@ function Room() {
     <div>
       <h1>Room: {roomId}</h1>
       <video ref={localVideoRef} autoPlay muted></video>
-      <video ref={remoteStream} autoPlay></video>
+      <video ref={remoteVideoRef} autoPlay></video>
       <button onClick={handleHangUp}>Hang Up</button>
     </div>
   );
