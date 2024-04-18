@@ -9,17 +9,16 @@ import Cookies from 'universal-cookie';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const cookies = new Cookies();
   
   const login = (userID) => {
     setIsLoggedIn(true);
-    const cookies = new Cookies();
     cookies.set('userID', userID, { path: '/' });
     console.log(cookies.get('userID'));
   };
 
   const logout = () => {
     setIsLoggedIn(false);
-    const cookies = new Cookies();
     cookies.remove('userID');
   };
 
