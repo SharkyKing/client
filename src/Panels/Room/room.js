@@ -66,6 +66,11 @@ function Room() {
       socket.emit('join-room', roomId);
     });
 
+    socket.on('disconnection', () => {
+      console.log('LOCAL DISCONNECT')
+      remoteVideoRef.current.srcObject = null;
+    });
+
     socket.on('ice-candidate', ({ candidate }) => {
       console.log('Received ICE candidate:', candidate);
       const iceCandidate = parseIceCandidate(candidate);
