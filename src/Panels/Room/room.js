@@ -14,6 +14,8 @@ function Room() {
   let peerConnection;
   const iceCandidatesQueue = [];
 
+  
+
   useEffect(() => {
     const socket = io(servers.SIGNALING_SERVER_URL);
     setSocket(socket);

@@ -81,7 +81,7 @@ function SignIn({ login })  {
       
               if (match) {
                   setLoading(false);
-                  login();
+                  login(userData.id);
                   navigate(paths.PROFILE);
               } else {
                   setLoading(false);

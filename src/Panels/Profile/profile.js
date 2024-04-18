@@ -3,12 +3,15 @@ import servers from '../../Additional/server.js';
 import axios from 'axios';
 import './profile.css';
 import moment from 'moment';
+import Cookies from 'universal-cookie';
 
 function Profile() {
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const email = 'kornis@gmail.com'; // Replace with your actual email
+  const cookies = new Cookies();
+  const userID = cookies.get('userID'); // Replace with your actual email
+
 
   const formattedCreatedAt = userData?.createdAt
   ? moment(userData.createdAt).format('YYYY-MM-DD HH:mm')
@@ -23,7 +26,7 @@ function Profile() {
       setIsLoading(true);
       setError(null); // Clear any previous errors before fetching
       try {
-        const response = await axios.get(`${servers.SERVER_URL}api/user/${email}`);
+        const response = await axios.get(`${servers.SERVER_URL}api/user/${userID}`);
         setUserData(response.data.user)
       } catch (error) {
         console.error('Error fetching user data:', error);

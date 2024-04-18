@@ -20,6 +20,7 @@
     "sass": "^1.74.1",
     "simple-peer": "^9.11.1",
     "socket.io-client": "^4.7.5",
+    "universal-cookie": "^7.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

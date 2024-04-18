@@ -122,8 +122,7 @@ function SignUp({login}) {
 
         resetFields();
         setLoading(false);
-        login();
-        navigate(paths.PROFILE);
+        navigate(paths.SIGNIN);
       } catch (error) {
         setLoading(false);
         if (error.response) {
