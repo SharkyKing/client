@@ -35,7 +35,7 @@ function Room() {
 
         peerConnection.ontrack = (event) => {
           console.log('Received remote stream:', event.streams[0]);
-          remoteVideoRef.current.srcObject = localStream;
+          remoteVideoRef.current.srcObject = event.streams[0];
         };
 
         const offer = await peerConnection.createOffer();
