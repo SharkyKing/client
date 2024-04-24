@@ -8,9 +8,6 @@ import { useNavigate  } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bcrypt from 'bcryptjs';
 
-//CONTEXT
-import AuthContext from "../../Additional/AuthProvider.js";
-
 //CUSTOM IMPORTAI
 import {getText} from '../../Languages/languages'
 import {Button, Textbox} from '../../Components/imports.js'
