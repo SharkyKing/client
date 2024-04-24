@@ -11,7 +11,7 @@ import bcrypt from 'bcryptjs';
 //CUSTOM IMPORTAI
 import {Button, Textbox} from '../../Components/imports.js'
 import PasswordStrengthMeter from '../../Components/PasswordStrengthMeter/passwordstrengthmeter.js';
-import { validateEmail, validateName, validatePassword, isAllEmpty } from '../../Additional/validationutils.js';
+import { validateEmail, validateName, isAllEmpty } from '../../Additional/validationutils.js';
 import { paths } from '../../Additional/paths.js';
 import {getText} from '../../Languages/languages'
 

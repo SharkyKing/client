@@ -3,10 +3,13 @@ import { apiPaths } from '../../Additional/serverPaths.js';
 
 //IMPORTAI
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bcrypt from 'bcryptjs';
+
+//CONTEXT
+import AuthContext from "../../Additional/AuthProvider.js";
 
 //CUSTOM IMPORTAI
 import {getText} from '../../Languages/languages'
@@ -18,6 +21,8 @@ import { paths } from '../../Additional/paths.js';
 import './signin.css'
 
 function SignIn({ login })  {
+    const {setAuth} = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -61,9 +66,13 @@ function SignIn({ login })  {
             }
 
             const { Password: storedPassword, id } = response.data.user;
+            const usr = response.data.user;
             const match = await bcrypt.compare(password, storedPassword);
             
             if (match) {
+              const accessToken = response?.data?.accessToken;
+              console.log(accessToken);
+              setAuth({ usr, storedPassword, accessToken})
               login(id);
               navigate(paths.PROFILE);
             } else {

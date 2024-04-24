@@ -1,11 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {Button, Textbox} from '../../Components/imports.js'
+import React, { useEffect, useRef, useState } from "react";
 import './room.css'
 import io from 'socket.io-client';
 import servers from '../../Additional/server.js'
 import { useParams } from 'react-router-dom';
-import {getText} from '../../Languages/languages'
-import Cookies from 'universal-cookie';
 
 function Room() {
   const localVideoRef = useRef();

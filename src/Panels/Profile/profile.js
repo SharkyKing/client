@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import servers from '../../Additional/server.js';
+//BACK END SERVERIS
+import { apiPaths } from '../../Additional/serverPaths.js';
+
+//IMPORTAI
 import axios from 'axios';
-import './profile.css';
-import moment from 'moment';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
+import moment from 'moment';
+
+//CUSTOM IMPORTAI
 import {getText} from '../../Languages/languages'
+
+//CSS IMPORTAS
+import './profile.css';
 
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -28,7 +35,7 @@ function Profile() {
       setIsLoading(true);
       setError(null); // Clear any previous errors before fetching
       try {
-        const response = await axios.get(`${servers.SERVER_URL}api/user/${userID}`);
+        const response = await axios.get(`${apiPaths.profileData(userID)}`);
         setUserData(response.data.user)
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -50,7 +57,7 @@ function Profile() {
   return (
     <>
       <div className="profile-container">
-        <h2>Profile Settings</h2>
+        <h2>{getText('profile.settings',lang)}</h2>
         {isLoading && <p>Loading user data...</p>}
       {error && <p>Error: {error.message}</p>}
       {true && ( // Only render the form if userData is available

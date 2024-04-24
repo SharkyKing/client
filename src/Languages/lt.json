@@ -15,7 +15,8 @@
         "lastName": "Pavardė",
         "email": "El. pašto adresas",
         "createdAt": "Vartotojas sukurtas",
-        "updatedAt": "Vartotojas modifikuotas"
+        "updatedAt": "Vartotojas modifikuotas",
+        "settings": "Profilio nustatymai"
     },
     "passwordStrength": {
         "veryweak": "Labai silpnas",

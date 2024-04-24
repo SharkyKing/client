@@ -1,8 +1,5 @@
 // Home.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import {getText} from '../../Languages/languages'
-import Cookies from 'universal-cookie';
 
 function Home() {
   const [roomId, setRoomId] = useState('');

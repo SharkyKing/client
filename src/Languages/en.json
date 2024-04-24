@@ -15,7 +15,8 @@
       "lastName": "Last name",
       "email": "Email",
       "createdAt": "Created at",
-      "updatedAt": "Updated at"
+      "updatedAt": "Updated at",
+      "settings": "Profile settings"
   },
   "passwordStrength": {
       "veryweak": "Too weak",
