@@ -1,10 +1,53 @@
 {
-    "home" : "Pagrindinis",
+    "navbarGuest": {
+        "home": "Pagrindinis",
+        "signin": "Prisijungti",
+        "signup": "Registruotis"
+    },
+    "navbarUser": {
+        "waiting": "Laukiamasis",
+        "joinroom": "Kambarys",
+        "profile": "Profilis",
+        "signout": "Atsijungti"
+    },
+    "profile": {
+        "firstName":"Vardas",
+        "lastName": "Pavardė",
+        "email": "El. pašto adresas",
+        "createdAt": "Vartotojas sukurtas",
+        "updatedAt": "Vartotojas modifikuotas"
+    },
     "passwordStrength": {
         "veryweak": "Labai silpnas",
         "weak": "Silpnas",
         "moderate": "Galėtų būti geriau",
         "strong": "Stiprus",
         "verystrong": "Tobulas"
+    },
+    "signInUp": {
+        "signup":{
+            "fillall": "Užpildykite laukus",
+            "validinfo": "Duomenys neteisingi",
+            "firstNameOnlyLetters": "Varde gali būti tik raidės",
+            "lastNameOnlyLetters": "Pavardėje gali būti tik raidės",
+            "wrongEmail": "Neteisingas El. pašto formatas",
+            "passDoNotMatch": "Slaptažodžiai neatitinka",
+            "password": "Slaptažodis",
+            "email": "El. pašto adresas",
+            "firstname": "Vardas",
+            "lastname": "Pavardė",
+            "repeatPassword": "Pakartokite slaptažodį",
+            "signup": "Registruotis"
+        },
+        "signin":{
+            "fillall": "Užpildykite laukus",
+            "incorrectDetails": "Sistemos klaida",
+            "userNotFound": "Tokio vartotojo nėra",
+            "systemError": "Sistemos klaida",
+            "incorrectUserOrPass": "Neteisingas el. pašto adresas arba slaptažodis",
+            "login":"Prisijungti",
+            "password": "Slaptažodis",
+            "email": "El. pašto adresas"
+        }
     }
 }

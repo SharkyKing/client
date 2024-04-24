@@ -1,136 +1,108 @@
-import servers from '../../Additional/server.js';
+//BACK END SERVERIS
+import { apiPaths } from '../../Additional/serverPaths.js';
 
+//IMPORTAI
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import bcrypt from 'bcryptjs';
 
+//CUSTOM IMPORTAI
+import {getText} from '../../Languages/languages'
 import {Button, Textbox} from '../../Components/imports.js'
-
 import { validateEmail, validatePassword, isAllEmpty } from '../../Additional/validationutils.js';
 import { paths } from '../../Additional/paths.js';
 
+//CSS IMPORTAS
 import './signin.css'
-
-import bcrypt from 'bcryptjs';
 
 function SignIn({ login })  {
     const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const [submissionFailed, setSubmissionFailed] = useState(false);
     const [submissionFailedMsg, setSubmissionFailedMsg] = useState('');
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
+    const cookies = new Cookies();
+    const lang = cookies.get('lang');
 
-    const handleEmailChange = (event) => {
-        setSubmissionFailed(false);
-        const value = event.target.value;
-        setEmail(value);
-        setErrors((prevErrors) => ({ ...prevErrors, email: !validateEmail(value) }));
-    }
-
-    const handlePasswordChange = (event) => {
-        setSubmissionFailed(false);
-        const value = event.target.value;
-        setPassword(value);
-        if (value.trim() === '') {
-            setErrors((prevErrors) => ({ ...prevErrors, password: false }));
-        } else {
-            setErrors((prevErrors) => ({ ...prevErrors, password: !validatePassword(value) }));
-        }
-    }
+    const setErrorState = (email, password) => {
+      setErrors({
+        email: !validateEmail(email),
+        password: password.trim() !== '' && !validatePassword(password),
+      });
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
+
+        setErrorState(email, password);
+
         const allValues = [email.trim(),password.trim()];
-        let preSubmitValidationFailed = false;
-
-        if (isAllEmpty(allValues)) {
-            setSubmissionFailedMsg('Fill all the fields')
-            preSubmitValidationFailed = true;
-        }
-
-        if (Object.values(errors).some((error) => error)) {
-            setSubmissionFailedMsg('Incorrect login details')
-            preSubmitValidationFailed = true;
-        }
-
-        if(preSubmitValidationFailed){
-            setSubmissionFailed(preSubmitValidationFailed);
-            setLoading(false);
-            return;
+        if (isAllEmpty(allValues) || Object.values(errors).some(Boolean)) {
+          setSubmissionFailedMsg(getText(isAllEmpty(allValues) ? 'signInUp.signin.fillall' : 'signInUp.signin.incorrectDetails', lang));
+          setSubmissionFailed(true);
+          setLoading(false);
+          return;
         }
 
         try {
-            const response = await axios.get(`${servers.SERVER_URL}api/user/login/${email}`);
+            const response = await axios.get(`${apiPaths.loginPath(email)}`);
             
             if (response.status !== 200) {
-                setLoading(false);
-                setSubmissionFailed(true);
-                if (response.status === 404) {
-                    setSubmissionFailedMsg('User not found');
-                } else {
-                    setSubmissionFailedMsg('Error occurred during login');
-                }
-                throw new Error(response.error);
+              setSubmissionFailedMsg(getText(response.status === 404 ? 'signInUp.signin.userNotFound' : 'signInUp.signin.systemError', lang));
+              setSubmissionFailed(true);
+              throw new Error(response.error);
             }
-            else {
-              const userData = response.data.user;
-              const match = await bcrypt.compare(password, userData.Password);
-      
-              if (match) {
-                  setLoading(false);
-                  login(userData.id);
-                  navigate(paths.PROFILE);
-              } else {
-                  setLoading(false);
-                  setSubmissionFailed(true);
-                  setSubmissionFailedMsg('Invalid username or password');
-              }
+
+            const { Password: storedPassword, id } = response.data.user;
+            const match = await bcrypt.compare(password, storedPassword);
+            
+            if (match) {
+              login(id);
+              navigate(paths.PROFILE);
+            } else {
+              setSubmissionFailedMsg(getText('signInUp.signin.incorrectUserOrPass', lang));
+              setSubmissionFailed(true);
             }
         } catch (error) {
+          const errorMessage = error.response?.data?.error || 'An error occurred during sign-in';
+          setSubmissionFailedMsg(errorMessage);
+          console.error('Sign-in error:', error);
+          setSubmissionFailed(true);
+          } finally {
             setLoading(false);
-            if (error.response) {
-                console.error('Error response from server:', error.response.data);
-                console.error('Status code:', error.response.status);
-                if (error.response.data && error.response.data.error) {
-                  console.error('Error message:', error.response.data.error);
-                  setSubmissionFailedMsg(error.response.data.error);
-                }
-            } else if (error.request) {
-                console.error('No response received:', error.request);
-            } else {
-                console.error('Error setting up the request:', error.message);
-            }
-            setSubmissionFailed(true);
-        }        
-
-      };
+          }
+       };
 
 
     return (
         <>
           <div className='container-signin'>
             <div className='sign-in-container-fields'>
-                <h1>SIGN IN</h1>
+                <h1>{getText('signInUp.signin.login',lang)}</h1>
               <div className='sign-in-container-textbox'>
                 <Textbox
                   type="email"
-                  placeholder="Email"
+                  placeholder={getText('signInUp.signin.email',lang)}
                   value={email}
-                  onChange={handleEmailChange}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className='sign-in-container-textbox'>
                 <Textbox
                   type="password"
-                  placeholder="Password"
+                  placeholder={getText('signInUp.signin.password',lang)}
                   value={password}
-                  onChange={handlePasswordChange}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button className='signin-btn' onClick={handleSubmit}>{loading ? <div className="spinner"></div> : 'Sign in'}</Button>
+              <Button className='signin-btn' onClick={handleSubmit}>{loading ? <div className="spinner"></div> : getText('signInUp.signin.login',lang)}</Button>
               {submissionFailed && <p className='submission-message'>{submissionFailedMsg}</p>}
               <p className={`submission-message ${submissionFailed ? 'show' : ''}`}>{submissionFailed ? submissionFailedMsg : '\u00A0'}</p>
             </div>

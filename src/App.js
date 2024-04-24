@@ -8,9 +8,11 @@ import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, Profile} from './Panels/i
 import Cookies from 'universal-cookie';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const cookies = new Cookies();
   
+  cookies.set('lang', 'en', { path: '/' });
+
   const login = (userID) => {
     setIsLoggedIn(true);
     cookies.set('userID', userID, { path: '/' });

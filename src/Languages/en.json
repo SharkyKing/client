@@ -1,9 +1,53 @@
 {
-    "greeting": "Hello, World!",
-    "error": {
-      "notFound": "Sorry, the page you requested was not found."
-    },
-    "passwordStrength": {
-        "veryweak": "Sorry, the page you requested was not found."
+  "navbarGuest": {
+      "home": "Home",
+      "signin": "Sign in",
+      "signup": "Sign up"
+  },
+  "navbarUser": {
+      "waiting": "Waiting room",
+      "joinroom": "Join room",
+      "profile": "Profile",
+      "signout": "Logout"
+  },
+  "profile": {
+      "firstName":"First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at"
+  },
+  "passwordStrength": {
+      "veryweak": "Too weak",
+      "weak": "Weak",
+      "moderate": "Could be better",
+      "strong": "Strong",
+      "verystrong": "Perfect"
+  },
+  "signInUp": {
+      "signup":{
+          "fillall": "Fill all fields",
+          "validinfo": "Invalida data in fields",
+          "firstNameOnlyLetters": "First name must be only letters",
+          "lastNameOnlyLetters": "Last name must be only letters",
+          "wrongEmail": "Wrong email format",
+          "passDoNotMatch": "Passwords do not match",
+          "password": "Password",
+          "email": "Email",
+          "firstname": "First name",
+          "lastname": "Last name",
+          "repeatPassword": "Repeat password",
+          "signup": "Sign up"
+      },
+      "signin":{
+          "fillall": "Fill all fields",
+          "incorrectDetails": "Must be our mistake",
+          "userNotFound": "User not found",
+          "systemError": "Must be out mistake",
+          "incorrectUserOrPass": "Wrong email or password",
+          "login":"Sign in",
+          "password": "Password",
+          "email": "Email"
       }
   }
+}

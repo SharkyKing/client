@@ -4,6 +4,8 @@ import './room.css'
 import io from 'socket.io-client';
 import servers from '../../Additional/server.js'
 import { useParams } from 'react-router-dom';
+import {getText} from '../../Languages/languages'
+import Cookies from 'universal-cookie';
 
 function Room() {
   const localVideoRef = useRef();

@@ -3,8 +3,13 @@ import { NavLink } from 'react-router-dom';
 import '../navbar.css'
 import './navbarUser.css'
 import { paths } from '../../../Additional/paths';
+import {getText} from '../../../Languages/languages'
+import Cookies from 'universal-cookie';
 
 function NavbarUser({ logout })  {
+  const cookies = new Cookies();
+  const lang = cookies.get('lang');
+
   const handleLogout = () => {
     logout();
   };
@@ -18,22 +23,22 @@ function NavbarUser({ logout })  {
         <ul className="nav-menu">
           <li className="nav-item">
             <NavLink to={paths.WAITING} className="nav-links" activeclassname="active">
-              Waiting room
+              {getText('navbarUser.waiting',lang)}
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink to={paths.JOINROOM} className="nav-links" activeclassname="active">
-              Room
+              {getText('navbarUser.joinroom',lang)}
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink to={paths.PROFILE} className="nav-links" activeclassname="active">
-              Profile
+              {getText('navbarUser.profile',lang)}
             </NavLink>
           </li>
           <li className="nav-item-signout">
             <NavLink to={paths.SIGNIN} className="nav-links-signout" onClick={handleLogout}>
-              Sign out
+              {getText('navbarUser.signout',lang)}
             </NavLink>
           </li>
         </ul>

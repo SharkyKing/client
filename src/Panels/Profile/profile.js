@@ -4,12 +4,14 @@ import axios from 'axios';
 import './profile.css';
 import moment from 'moment';
 import Cookies from 'universal-cookie';
+import {getText} from '../../Languages/languages'
 
 function Profile() {
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const cookies = new Cookies();
+  const lang = cookies.get('lang');
   const userID = cookies.get('userID'); // Replace with your actual email
 
 
@@ -55,7 +57,7 @@ function Profile() {
         <form onSubmit={handleSubmit}>
           <div className="profile-field">
             <label htmlFor="FirstName" className="profile-label">
-              First Name:
+              {getText('profile.firstName',lang)}
             </label>
             <input
               type="text"
@@ -68,7 +70,7 @@ function Profile() {
           </div>
           <div className="profile-field">
             <label htmlFor="lastName" className="profile-label">
-              Last Name:
+              {getText('profile.lastName',lang)}
             </label>
             <input
               type="text"
@@ -81,7 +83,7 @@ function Profile() {
           </div>
           <div className="profile-field">
             <label htmlFor="email" className="profile-label">
-              Email:
+              {getText('profile.email',lang)}
             </label>
             <input
               type="email"
@@ -94,7 +96,7 @@ function Profile() {
           </div>
           <div className="profile-field">
             <label htmlFor="createdAt" className="profile-label">
-              Created At:
+              {getText('profile.createdAt',lang)}
             </label>
             <span id="createdAt" className="profile-input" disabled>
             {formattedCreatedAt} 
@@ -102,7 +104,7 @@ function Profile() {
           </div>
           <div className="profile-field">
             <label htmlFor="updatedAt" className="profile-label">
-              Updated At:
+              {getText('profile.updatedAt',lang)}
             </label>
             <span id="updatedAt" className="profile-input" disabled>
             {formattedUpdatedAt} 
