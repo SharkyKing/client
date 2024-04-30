@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
     "peerjs": "^1.5.2",

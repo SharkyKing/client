@@ -18,7 +18,6 @@ import { paths } from '../../Additional/paths.js';
 import './signin.css'
 
 function SignIn({ login })  {
-    const {setAuth} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -67,9 +66,6 @@ function SignIn({ login })  {
             const match = await bcrypt.compare(password, storedPassword);
             
             if (match) {
-              const accessToken = response?.data?.accessToken;
-              console.log(accessToken);
-              setAuth({ usr, storedPassword, accessToken})
               login(id);
               navigate(paths.PROFILE);
             } else {
