@@ -28,7 +28,7 @@ function NavbarUser({ logout })  {
           </li>
           <li className="nav-item">
             <NavLink to={paths.JOINROOM} className="nav-links" activeclassname="active">
-              {getText('navbarUser.joinroom',lang)}
+              {getText('navbarUser.room',lang)}
             </NavLink>
           </li>
           <li className="nav-item">

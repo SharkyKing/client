@@ -1,7 +1,7 @@
 .button {
     padding: 8px 16px;
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--dark-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -10,6 +10,6 @@
   
 .button:hover {
   background-color: var(--dark-color);
-  color: var(--light-color);;
+  color: var(--light-color);
 }
   

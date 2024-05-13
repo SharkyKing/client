@@ -1,0 +1,31 @@
+.Month-Container{
+    display: flex;
+}
+
+.Month-Container button{
+    margin: 20px;
+    width: 10vh;
+    transition: transform 0.3s ease;
+}
+
+.Month-Container button:hover{
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.selected {
+    font-weight: bold;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.Day-Container button{
+    margin: 20px;
+    width: 10vh;
+    transition: transform 0.3s ease;
+}
+
+.Day-Container button:hover{
+    transform: translateY(-5px);
+    cursor: pointer;
+}

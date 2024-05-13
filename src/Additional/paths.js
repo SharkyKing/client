@@ -7,6 +7,10 @@ export const paths = {
     PROFILE: '/profile',
     JOINROOM: '/room',
     ROOM: '/room/:roomId',
-    WAITING: '/waiting'
+    WAITING: '/waiting',
+    JOINROOM: '/room',
+    MEETINGSIGNUP: '/meetingsignup',
+    MEETINGSIGNUPCHOOSEPERSON: '/meetingsignup-chooseperson',
+    MEETINGSIGNUPCHOOSEDATE: '/meetingsignup-choosedate'
   };
   

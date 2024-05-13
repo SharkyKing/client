@@ -109,7 +109,7 @@ function SignIn({ login })  {
               <p className={`submission-message ${submissionFailed ? 'show' : ''}`}>{submissionFailed ? submissionFailedMsg : '\u00A0'}</p>
             </div>
             <div className='sign-in-container-image'>
-                <img className='image-imgsrc-signin' src="/images/signinimage.jpg" alt="Description" />
+                <img className='image-imgsrc-signin' src="/images/signin.jpg" alt="Description" />
             </div>
           </div>
         </>

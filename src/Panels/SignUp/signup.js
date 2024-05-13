@@ -3,7 +3,7 @@ import { apiPaths } from '../../Additional/serverPaths.js';
 
 //IMPORTAI
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bcrypt from 'bcryptjs';
@@ -22,13 +22,13 @@ import './signup.css'
 
 function SignUp({login}) {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-      email: '',
-      firstname: '',
-      lastname: '',
-      password: '',
-      repeatPassword: '',
-    });
+
+    const [email, setEmail] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [password, setPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
+
     const [errors, setErrors] = useState({});
     const [submissionFailed, setSubmissionFailed] = useState(false);
     const [submissionFailedMsg, setSubmissionFailedMsg] = useState('');
@@ -37,26 +37,51 @@ function SignUp({login}) {
     const lang = cookies.get('lang');
     const saltRounds = 10;
 
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setFormData({ ...formData, [name]: value });
-      setErrors({ ...errors, [name]: name === 'email' ? !validateEmail(value) : !validateName(value) });
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        setErrors({ ...errors, email: !validateEmail(event.target.value) });
+    };
+
+    const handleFirstnameChange = (event) => {
+        setFirstname(event.target.value);
+        setErrors({ ...errors, firstname: !validateName(event.target.value) });
+    };
+
+    const handleLastnameChange = (event) => {
+        setLastname(event.target.value);
+        setErrors({ ...errors, lastname: !validateName(event.target.value) });
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleRepeatPasswordChange = (event) => {
+        setRepeatPassword(event.target.value);
+        setErrors({ ...errors, repeatPassword: event.target.value !== password });
     };
 
     const resetForm = () => {
-      setFormData({ email: '', firstname: '', lastname: '', password: '', repeatPassword: '' });
-      setSubmissionFailed(false);
+        setEmail('');
+        setFirstname('');
+        setLastname('');
+        setPassword('');
+        setRepeatPassword('');
+        setSubmissionFailed(false);
     };
 
     const handleSubmit = async (event) => {
       event.preventDefault();
       setLoading(true);
 
-      const allValues = Object.values(formData);
-      const formErrors = Object.keys(formData).reduce((acc, key) => {
-        acc[key] = key === 'email' ? !validateEmail(formData[key]) : !validateName(formData[key]);
-        return acc;
-      }, {});
+      const formData = { email, firstname, lastname, password, repeatPassword };
+        const allValues = Object.values(formData);
+        const formErrors = {
+            email: !validateEmail(email),
+            firstname: !validateName(firstname),
+            lastname: !validateName(lastname),
+            repeatPassword: repeatPassword !== password
+        };
 
       if (isAllEmpty(allValues) || Object.values(formErrors).some(Boolean)) {
         setSubmissionFailedMsg(getText(isAllEmpty(allValues) ? 'signInUp.signup.fillall' : 'signInUp.signup.validinfo', lang));
@@ -69,11 +94,11 @@ function SignUp({login}) {
         const hashedPassword = await bcrypt.hash(formData.password, saltRounds);
 
         const response = await axios.post(apiPaths.signUpPath(), {
-          email: formData.email,
-          firstname: formData.firstname,
-          lastname: formData.lastname,
+          email,
+          firstname,
+          lastname,
           password: hashedPassword
-        });
+      });
         
         if (response.status !== 200) {
             setSubmissionFailed(true);
@@ -112,8 +137,8 @@ function SignUp({login}) {
                 <Textbox
                   type="email"
                   placeholder={getText('signInUp.signup.email',lang)}
-                  value={formData.email}
-                  onChange={handleInputChange}
+                  value={email}
+                  onChange={handleEmailChange }
                   className={errors.email ? 'error' : ''}
                   autoComplete="off"
                   name="email"
@@ -124,8 +149,8 @@ function SignUp({login}) {
                 <Textbox
                   type="text"
                   placeholder={getText('signInUp.signup.firstname',lang)}
-                  value={formData.firstname}
-                  onChange={handleInputChange}
+                  value={firstname}
+                  onChange={handleFirstnameChange }
                   className={errors.firstname ? 'error' : ''}
                   autoComplete="off"
                 />
@@ -135,8 +160,8 @@ function SignUp({login}) {
                 <Textbox
                   type="text"
                   placeholder={getText('signInUp.signup.lastname',lang)}
-                  value={formData.lastname}
-                  onChange={handleInputChange}
+                  value={lastname}
+                  onChange={handleLastnameChange }
                   className={errors.lastname ? 'error' : ''}
                   autoComplete="off"
                 />
@@ -146,19 +171,19 @@ function SignUp({login}) {
                 <Textbox
                   type="password"
                   placeholder={getText('signInUp.signup.password',lang)}
-                  value={formData.password}
-                  onChange={handleInputChange}
+                  value={password}
+                  onChange={handlePasswordChange }
                   className={errors.password ? 'error' : ''}
                   autoComplete="off"
                 />
-                <PasswordStrengthMeter password={formData.password} />
+                <PasswordStrengthMeter password={password} />
               </div>
               <div className='container-textbox'>
                 <Textbox
                   type="password"
                   placeholder={getText('signInUp.signup.repeatPassword',lang)}
-                  value={formData.repeatPassword}
-                  onChange={handleInputChange}
+                  value={repeatPassword}
+                  onChange={handleRepeatPasswordChange }
                   className={errors.repeatPassword ? 'error' : ''}
                   autoComplete="off"
                 />
@@ -169,7 +194,7 @@ function SignUp({login}) {
               <p className={`submission-message ${submissionFailed ? 'show' : ''}`}>{submissionFailed ? submissionFailedMsg : '\u00A0'}</p>
             </div>
             <div className='container-image'>
-                <img className='image-imgsrc-signup' src="/images/signupimage.jpg" alt="signupimg" />
+                <img className='image-imgsrc-signup' src="/images/signup.jpg" alt="signupimg" />
             </div>
           </div>
         </>

@@ -50,7 +50,7 @@ const RoomPage = () => {
       }
     });
   }, [myStream]);
-
+ 
   const handleCallAccepted = useCallback(
     ({ from, ans }) => {
       peer.setLocalDescription(ans);
@@ -62,6 +62,7 @@ const RoomPage = () => {
 
   const handleNegoNeeded = useCallback(async () => {
     const offer = await peer.getOffer();
+    console.log("Emiting negiotion needed");
     socket.emit("peer:nego:needed", { offer, to: remoteSocketId });
   }, [remoteSocketId, socket]);
 
@@ -75,6 +76,7 @@ const RoomPage = () => {
   const handleNegoNeedIncomming = useCallback(
     async ({ from, offer }) => {
       const ans = await peer.getAnswer(offer);
+      console.log("Emiting negiotion done");
       socket.emit("peer:nego:done", { to: from, ans });
     },
     [socket]
@@ -87,7 +89,7 @@ const RoomPage = () => {
   useEffect(() => {
     peer.peer.addEventListener("track", async (ev) => {
       const remoteStream = ev.streams;
-      console.log("GOT TRACKS!!");
+      console.log("Event listener *track* got tracks");
       setRemoteStream(remoteStream[0]);
     });
   }, []);
@@ -117,34 +119,30 @@ const RoomPage = () => {
 
   return (
     <div>
-      <h1>Room Page</h1>
-      <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button onClick={sendStreams}>Send Stream</button>}
-      {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
+      <h4>{remoteSocketId ? "Connected" : "No one in room"}{myStream && <button onClick={sendStreams}>Send Stream</button>}{remoteSocketId && <button onClick={handleCallUser}>CALL</button>}</h4>
+      <div style={{ position: "relative", height: "80vh", width: "120vh",backgroundColor: "#fff" }}>
+      {remoteStream && (
+        <ReactPlayer
+          playing
+          muted
+          height="100%"
+          width="100%"
+          url={remoteStream}
+        />
+      )}
       {myStream && (
         <>
-          <h1>My Stream</h1>
           <ReactPlayer
             playing
             muted
-            height="100px"
-            width="200px"
+            style={{ position: "absolute", bottom: 0, left: 0, margin: "10px",border: "2px solid #fff",backgroundColor: "#fff" }}
+            height="200px"
+            width="350px"
             url={myStream}
           />
         </>
       )}
-      {remoteStream && (
-        <>
-          <h1>Remote Stream</h1>
-          <ReactPlayer
-            playing
-            muted
-            height="100px"
-            width="200px"
-            url={remoteStream}
-          />
-        </>
-      )}
+</div>
     </div>
   );
 };

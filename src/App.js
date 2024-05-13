@@ -4,7 +4,7 @@ import NavbarUser from './Panels/Navbar/NavbarUser/navbarUser.js';
 import NavbarGuest from './Panels/Navbar/NavbarGuest/navbarGuest.js';
 import React, { useState } from 'react';
 import { paths } from './Additional/paths';
-import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, Profile} from './Panels/imports.js'
+import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, Profile, MeetingSignUp, MeetingSignUpChoosePerson, MeetingSignUpChooseDate} from './Panels/imports.js'
 import Cookies from 'universal-cookie';
 import { SocketProvider } from './Panels/Room/Socket.js'; 
 
@@ -17,11 +17,13 @@ function App() {
   const login = (userID) => {
     setIsLoggedIn(true);
     cookies.set('userID', userID, { path: '/' });
+    cookies.set('logged', true, { path: '/' });
     console.log(cookies.get('userID'));
   };
 
   const logout = () => {
     setIsLoggedIn(false);
+    cookies.set('logged', false, { path: '/' });
     cookies.remove('userID');
   };
 
@@ -38,6 +40,9 @@ function App() {
             <Route path={paths.JOINROOM} element={<RoomJoin/>}/>
             <Route path={paths.WAITING} element={<Waiting />} />
             <Route path={paths.PROFILE} element={<Profile />} />
+            <Route path={paths.MEETINGSIGNUP} element={<MeetingSignUp />} />
+            <Route path={paths.MEETINGSIGNUPCHOOSEPERSON} element={<MeetingSignUpChoosePerson />}/>
+            <Route path={paths.MEETINGSIGNUPCHOOSEDATE} element={<MeetingSignUpChooseDate />}/>
           </Routes>
         </div>
       </Router>

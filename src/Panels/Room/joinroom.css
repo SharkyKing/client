@@ -1,0 +1,32 @@
+.join-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  
+  .btn-submitRoom{
+    width: 15%;
+    text-align: center;
+  }
+
+  .inputid-container,
+  .inputroom-container,
+  .btn-submitRoom {
+    margin-top: 10px; 
+  }
+
+  .image-container{
+    width: 100%;
+    text-align: center;
+  }
+
+  .image-imgsrc-join{
+    margin-top: 10vh;
+    height: 50vh;
+  }

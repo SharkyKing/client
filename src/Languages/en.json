@@ -1,14 +1,18 @@
 {
   "navbarGuest": {
       "home": "Home",
+      "connect": "Get into meeting",
       "signin": "Sign in",
-      "signup": "Sign up"
+      "signup": "Sign up",
+      "systemname" : "Consultation system",
+      "signupformeet": "Get a high-quality consultation"
   },
   "navbarUser": {
       "waiting": "Waiting room",
-      "joinroom": "Join room",
+      "room": "Consultation room",
       "profile": "Profile",
-      "signout": "Logout"
+      "signout": "Logout",
+      "systemname" : "Consultation system"
   },
   "profile": {
       "firstName":"First name",
@@ -25,6 +29,19 @@
       "strong": "Strong",
       "verystrong": "Perfect"
   },
+  "meetingsignup":{
+    "phonenoheader": "Before we start, we need your some of your information",
+    "fillall": "Fill all fields",
+    "validinfo": "Invalida data in fields",
+    "firstNameOnlyLetters": "First name must be only letters",
+    "lastNameOnlyLetters": "Last name must be only letters",
+    "wrongEmail": "Wrong email format",
+    "password": "Password",
+    "email": "Email",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "phoneno": "Phone number"
+},
   "signInUp": {
       "signup":{
           "fillall": "Fill all fields",

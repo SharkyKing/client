@@ -1,0 +1,44 @@
+.personCard{
+    height: 25vh;
+    width: 20vh;
+    background-color: var(--info-color);
+    border-radius: 5px;
+    margin: 20px;
+    transition: transform 0.3s ease;
+}
+.personCard:hover{
+    transform: translateY(-30px);
+    cursor: pointer;
+}
+
+.personCard-role-container{
+    background-color: var(--info-color);
+    text-align: center;
+    height: 15%;
+}
+.personCard-role{
+    font-weight: bold;
+    font-size: 0.8vw;
+    margin-bottom: 5px;
+}
+.personCard-image-container{
+    background-color: blanchedalmond;
+    height: 70%;
+}
+
+.personCard-data-container{
+    background-color: var(--info-color);
+    text-align: center;
+    height: 15%;
+    padding: 2px;
+}
+
+.personCard-data-name {
+    font-size: 0.8vw;
+}
+
+.personCard-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

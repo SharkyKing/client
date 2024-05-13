@@ -16,6 +16,16 @@ function NavbarGuest() {
           <img className="navbar-logo" src="/images/connect.png" alt="Logo" />
         </NavLink>
         <ul className="nav-menu">
+        <li className="nav-item">
+            <NavLink to={paths.MEETINGSIGNUP} className="nav-links" activeclassname="active">
+              Registruotis
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to={paths.JOINROOM} className="nav-links" activeclassname="active">
+              {getText('navbarGuest.connect',lang)}
+            </NavLink>
+          </li>
           <li className="nav-item">
             <NavLink to={paths.HOME} className="nav-links" activeclassname="active">
               {getText('navbarGuest.home',lang)}

@@ -1,14 +1,18 @@
 {
     "navbarGuest": {
         "home": "Pagrindinis",
+        "connect": "Jungits prie konsultacijos",
         "signin": "Prisijungti",
-        "signup": "Registruotis"
+        "signup": "Registruotis",
+        "systemname" : "Konsultacijų sistema",
+        "signupformeet": "Registracija į konsultacija"
     },
     "navbarUser": {
         "waiting": "Laukiamasis",
-        "joinroom": "Kambarys",
+        "room": "Konsultacijų kambarys",
         "profile": "Profilis",
-        "signout": "Atsijungti"
+        "signout": "Atsijungti",
+        "systemname" : "Konsultacijų sistema"
     },
     "profile": {
         "firstName":"Vardas",
