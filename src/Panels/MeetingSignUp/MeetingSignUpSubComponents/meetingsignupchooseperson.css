@@ -1,0 +1,6 @@
+.Persons-Container{
+    margin: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
+}

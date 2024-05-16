@@ -1,0 +1,79 @@
+.meeting-signup-container{
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    margin-top: 10px;
+}
+
+.meeting-signup-navigation{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.meeting-signup-navigation-navitem{
+    width: 30%;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.meeting-signup-navigation-navitem-img{
+    width: 5%;
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.image-imgsrc-right-arrow {
+    height: 5vh;
+    width: auto; 
+}
+
+.meeting-signup-navigation-navitem .button{
+    width: 100%;
+    font-size: 1vw;
+}
+
+.meeting-signup-navigation .active {
+    background-color:var(--dark-color);
+    color: var(--light-color);
+}
+
+.meeting-signup-viewcontainer-signup{
+    width: 50%;
+    text-align: center;
+}
+
+.meeting-signup-viewcontainer-signup .button{
+    width: 50%;
+    text-align: center;
+    font-size: 1vw;
+}
+
+.meeting-signup-viewcontainer-signup{
+    width: 50%;
+}
+
+.meeting-signup-viewcontainer-person{
+    width: 100%;
+}
+
+.meeting-signup-viewcontainer-date{
+    width: 70%;
+    margin: 50px;
+}
+
+.meeting-signup-image-signup{
+    width: 50%;
+}
+
+.meeting-signup-image-signup{
+    width: 50%;
+}
+
+.meeting-signup-image-date{
+    width: 30%;
+    margin: 50px;
+}

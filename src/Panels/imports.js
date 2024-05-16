@@ -6,6 +6,4 @@ export { default as Profile } from './Profile/profile.js';
 export { default as Room } from './Room/room.js'; 
 export { default as RoomJoin } from './Room/joinroom.js'
 export { default as Waiting } from './Waiting/waiting.js'; 
-export { default as MeetingSignUp } from './MeetingSignUp/meetingsignup.js'; 
-export { default as MeetingSignUpChoosePerson } from './MeetingSignUp/meetingsignupchooseperson.js'; 
-export { default as MeetingSignUpChooseDate } from './MeetingSignUp/meetingsignupchoosedate.js'; 
+export { default as MeetingSignUp } from './MeetingSignUp/meetingMainSignUp.js'; 

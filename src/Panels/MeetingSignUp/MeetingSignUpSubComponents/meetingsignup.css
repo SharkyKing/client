@@ -1,0 +1,23 @@
+.container-meetingsignup{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-meetingsignup h1 {
+    margin: 20px;
+    font-size: 2vw;
+}
+
+.container-fields{
+    width: 100%;
+    height: 50%;
+    text-align: center;
+}
+
+.container-fields .container-textbox{
+    width: 100%;
+}
+
+.container-fields .container-textbox .texbox-input{
+    width: 50%;
+}
