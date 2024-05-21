@@ -77,3 +77,7 @@
     width: 30%;
     margin: 50px;
 }
+
+.swal-html-container {
+    text-align: left;
+}

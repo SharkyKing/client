@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 //CSS IMPORTAS
 import './meetingsignupchooseperson.css'
-function MeetingSignUpChoosePerson({ setStateChange, State }) {
+function MeetingSignUpChoosePerson({ setStateChange, State, setChosenConsultant }) {
     const cookies = new Cookies();
     const lang = cookies.get('lang');
     const navigate = useNavigate();
@@ -35,14 +35,14 @@ function MeetingSignUpChoosePerson({ setStateChange, State }) {
         Pasirinkite specialistą!
     </h1>
     <div className="Persons-Container">
-        <PersonCard imgSource={'/images/doctor1.jpg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor2.jpg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor3.jpeg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor4.jpg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor1.jpg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor2.jpg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor3.jpeg'} onClick={handleNext}/>
-        <PersonCard imgSource={'/images/doctor4.jpg'} onClick={handleNext}/>
+        <PersonCard imgSource={'/images/doctor1.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor2.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor3.jpeg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor4.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor1.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor2.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor3.jpeg'} onClick={handleNext} setState={setChosenConsultant}/>
+        <PersonCard imgSource={'/images/doctor4.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
     </div>
     </>
   );

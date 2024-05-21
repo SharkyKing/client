@@ -2,9 +2,14 @@ import React, { useState, useCallback, useEffect } from "react";
 import './personCard.css'; // Import the CSS file for styling (optional)
 import {Button, Textbox} from '../imports'
 
-function PersonCard({ onClick, imgSource, className }) {
+function PersonCard({ onClick, imgSource, className, setState }) {
   const [useSpecialty, setUseSpecialty] = useState(true);
   
+  const  handleNext = () => {
+    setState(1)
+    onClick()
+  }
+
   return (
     <div className="personData">
       <div className={`personCard ${className}`} >
@@ -23,7 +28,7 @@ function PersonCard({ onClick, imgSource, className }) {
             <p>Info</p>
         </div>
         <div className="personData-info-confirm">
-          <Button onClick={onClick}>Pasirinkti specialistą</Button>
+          <Button onClick={handleNext}>Pasirinkti specialistą</Button>
         </div>
       </div>
     </div>

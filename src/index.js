@@ -6,9 +6,9 @@ import { SocketProvider } from './Panels/Room/Socket.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <SocketProvider>
+  //<SocketProvider>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-  </SocketProvider>
+ // </SocketProvider>
 );

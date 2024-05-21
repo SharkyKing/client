@@ -8,69 +8,12 @@ import Swal from 'sweetalert2';
 
 //CSS IMPORTAS
 import './meetingsignupchoosedate.css'
-function MeetingSignUpChooseDate() {
+function MeetingSignUpChooseDate({ setSelectedMonth, selectedMonth, setSelectedDay, selectedDay, setSelectedTime, selectedTime,handleFinish  }) {
     const cookies = new Cookies();
     const lang = cookies.get('lang');
 
-    const days = Array.from({length: 31}, (_, index) => index + 1);
-
-    const [selectedMonth, setSelectedMonth] = useState(null);
-    const [selectedDay, setSelectedDay] = useState(null);
-    const [selectedTime, setSelectedTime] = useState(null);
-
     const handleNextRoom = useCallback(() => {
-        if (selectedMonth === null || selectedDay === null || selectedTime === null) {
-            if(selectedMonth === null){
-                Swal.fire({
-                    icon: "error",
-                    title: "Nepasirinktas mėnesis"
-                  });
-                  return;
-            }
-            if(selectedDay === null){
-                Swal.fire({
-                    icon: "error",
-                    title: "Nepasirinkta diena"
-                  });
-                  return;
-            }
-            if(selectedTime === null){
-                Swal.fire({
-                    icon: "error",
-                    title: "Nepasirinktas laikas"
-                  });   
-                  return;
-            }
-        }
-
-        Swal.fire({
-            title: "Išsiuntemė jums kodą nurodytu telefono numeriu, gavus kodą, įrašykite jį :)",
-            input: "text",
-            inputAttributes: {
-              autocapitalize: "off"
-            },
-            showCancelButton: true,
-            confirmButtonText: "Patvirtinti",
-            cancelButtonText: "Atšaukti",
-            showLoaderOnConfirm: true,
-            preConfirm: async (login) => {
-              try {
-                console.log("YEY")
-              } catch (error) {
-                Swal.showValidationMessage(`
-                  Request failed: ${error}
-                `);
-              }
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: `${result.value.login}'s avatar`,
-                imageUrl: result.value.avatar_url
-              });
-            }
-          });
+        handleFinish();
 
       }, [selectedMonth, selectedDay, selectedTime]);
     
@@ -98,7 +41,7 @@ function MeetingSignUpChooseDate() {
     };
 
     const timeSlots = generateTimeSlots();
-
+    const days = Array.from({length: 31}, (_, index) => index + 1);
 
   return (
     <>
@@ -106,6 +49,9 @@ function MeetingSignUpChooseDate() {
     <h1>
         Pasirinkite laiką!
     </h1>
+    <h2>
+        {selectedMonth}-{selectedDay}  {selectedTime} h
+    </h2>
     <Button className='datechosen-btn' onClick={handleNextRoom}>Užbaigti registraciją!</Button>
     </div>
     <div className="dateselector-container">
@@ -114,18 +60,18 @@ function MeetingSignUpChooseDate() {
             Mėnesis
         </h1>
         <div className="Month-Container-scroll">
-            <Button className={selectedMonth === 'Sausis' ? 'selected' : ''} onClick={() => handleMonthClick('Sausis')}>Sausis</Button>
-            <Button className={selectedMonth === 'Vasaris' ? 'selected' : ''} onClick={() => handleMonthClick('Vasaris')}>Vasaris</Button>
-            <Button className={selectedMonth === 'Kovas' ? 'selected' : ''} onClick={() => handleMonthClick('Kovas')}>Kovas</Button>
-            <Button className={selectedMonth === 'Balandis' ? 'selected' : ''} onClick={() => handleMonthClick('Balandis')}>Balandis</Button>
-            <Button className={selectedMonth === 'Gegužė' ? 'selected' : ''} onClick={() => handleMonthClick('Gegužė')}>Gegužė</Button>
-            <Button className={selectedMonth === 'Birželis' ? 'selected' : ''} onClick={() => handleMonthClick('Birželis')}>Birželis</Button>
-            <Button className={selectedMonth === 'Liepa' ? 'selected' : ''} onClick={() => handleMonthClick('Liepa')}>Liepa</Button>
-            <Button className={selectedMonth === 'Rugpjūtis' ? 'selected' : ''} onClick={() => handleMonthClick('Rugpjūtis')}>Rugpjūtis</Button>
-            <Button className={selectedMonth === 'Rugsėjis' ? 'selected' : ''} onClick={() => handleMonthClick('Rugsėjis')}>Rugsėjis</Button>
-            <Button className={selectedMonth === 'Spalis' ? 'selected' : ''} onClick={() => handleMonthClick('Spalis')}>Spalis</Button>
-            <Button className={selectedMonth === 'Lapkritis' ? 'selected' : ''} onClick={() => handleMonthClick('Lapkritis')}>Lapkritis</Button>
-            <Button className={selectedMonth === 'Gruodis' ? 'selected' : ''} onClick={() => handleMonthClick('Gruodis')}>Gruodis</Button>
+            <Button className={selectedMonth === '01' ? 'selected' : ''} onClick={() => handleMonthClick('01')}>Sausis</Button>
+            <Button className={selectedMonth === '02' ? 'selected' : ''} onClick={() => handleMonthClick('02')}>Vasaris</Button>
+            <Button className={selectedMonth === '03' ? 'selected' : ''} onClick={() => handleMonthClick('03')}>Kovas</Button>
+            <Button className={selectedMonth === '04' ? 'selected' : ''} onClick={() => handleMonthClick('04')}>Balandis</Button>
+            <Button className={selectedMonth === '05' ? 'selected' : ''} onClick={() => handleMonthClick('05')}>Gegužė</Button>
+            <Button className={selectedMonth === '06' ? 'selected' : ''} onClick={() => handleMonthClick('06')}>Birželis</Button>
+            <Button className={selectedMonth === '07' ? 'selected' : ''} onClick={() => handleMonthClick('07')}>Liepa</Button>
+            <Button className={selectedMonth === '08' ? 'selected' : ''} onClick={() => handleMonthClick('08')}>Rugpjūtis</Button>
+            <Button className={selectedMonth === '09' ? 'selected' : ''} onClick={() => handleMonthClick('09')}>Rugsėjis</Button>
+            <Button className={selectedMonth === '10' ? 'selected' : ''} onClick={() => handleMonthClick('10')}>Spalis</Button>
+            <Button className={selectedMonth === '11' ? 'selected' : ''} onClick={() => handleMonthClick('11')}>Lapkritis</Button>
+            <Button className={selectedMonth === '12' ? 'selected' : ''} onClick={() => handleMonthClick('12')}>Gruodis</Button>
         </div>
     </div>
     <div className="Day-Container">
@@ -135,11 +81,11 @@ function MeetingSignUpChooseDate() {
         <div className="Day-Container-scroll">
         {days.map((day) => (
             <Button 
-                key={day}
-                className={selectedDay === day ? 'selected' : ''}
-                onClick={() => handleDayClick(day)}
+                key={String(day).padStart(2, '0')}
+                className={selectedDay === String(day).padStart(2, '0') ? 'selected' : ''}
+                onClick={() => handleDayClick(String(day).padStart(2, '0'))}
             >
-                {day}
+                {String(day).padStart(2, '0')}
             </Button>
         ))}
         </div>

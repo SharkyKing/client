@@ -4,7 +4,7 @@ import NavbarUser from './Panels/Navbar/NavbarUser/navbarUser.js';
 import NavbarGuest from './Panels/Navbar/NavbarGuest/navbarGuest.js';
 import React, { useState } from 'react';
 import { paths } from './Additional/paths';
-import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, Profile, MeetingSignUp } from './Panels/imports.js'
+import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, ProfileMain, MeetingSignUp } from './Panels/imports.js'
 import Cookies from 'universal-cookie';
 import { SocketProvider } from './Panels/Room/Socket.js'; 
 
@@ -39,7 +39,7 @@ function App() {
             <Route path={paths.ROOM} element={<Room />} />
             <Route path={paths.JOINROOM} element={<RoomJoin/>}/>
             <Route path={paths.WAITING} element={<Waiting />} />
-            <Route path={paths.PROFILE} element={<Profile />} />
+            <Route path={paths.PROFILE} element={<ProfileMain />} />
             <Route path={paths.MEETINGSIGNUP} element={<MeetingSignUp />} />
           </Routes>
         </div>

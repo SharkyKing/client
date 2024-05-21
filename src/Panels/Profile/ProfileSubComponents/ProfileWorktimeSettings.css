@@ -1,0 +1,29 @@
+.worktime-view-select{
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.worktime-view-select .button{
+    margin-left: 20px;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.worktime-view-select .button:hover{
+    margin-left: 20px;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.worktime-container{
+    height: 70vh;
+    margin: 30px;
+}
+
+.worktime-view{
+    margin-top: 10px;
+    height: 100%;
+    margin: 30px;
+}
