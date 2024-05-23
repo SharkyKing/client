@@ -26,4 +26,8 @@
     margin-top: 10px;
     height: 100%;
     margin: 30px;
+    background-color:  var(--primary-color);
+    overflow: auto; /* Add scrolling if necessary */
+    border: 1px solid #ccc; /* Optional: add a border for visual boundaries */
+    margin: 0 auto;
 }
