@@ -1,12 +1,13 @@
-.textbox-input {
+.textArea-input {
     border: 0;
     border-radius: 5px;
-    height: 30px;
+    height: 12vh;
     width: 300px;
     transition: background-color 0.3s ease;
+    resize: none;
 }
 
-.textbox-input:hover {
+.textArea-input:hover {
     background-color: var(--primary-color);
 }
 

@@ -8,9 +8,9 @@ export const paths = {
     JOINROOM: '/room',
     ROOM: '/room/:roomId',
     WAITING: '/waiting',
-    JOINROOM: '/room',
     MEETINGSIGNUP: '/meetingsignup',
     MEETINGSIGNUPCHOOSEPERSON: '/meetingsignup-chooseperson',
-    MEETINGSIGNUPCHOOSEDATE: '/meetingsignup-choosedate'
+    MEETINGSIGNUPCHOOSEDATE: '/meetingsignup-choosedate',
+    WORKTIME: '/worktime'
   };
   

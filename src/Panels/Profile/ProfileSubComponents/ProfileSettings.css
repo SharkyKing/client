@@ -1,0 +1,74 @@
+.profile-settings{
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-data{
+    height: 100%;
+    width: 30%;
+}
+
+.profile-data-photo{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-data-data{
+    height: 50%;
+}
+
+.profile-additional{
+    height: 100%;
+    width: 70%;
+    background-color: blue;
+}
+
+.profile-data-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+}
+
+.input-group{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-subGroup{
+    margin-top: 2vh;
+}
+
+.input-subGroup button{
+    margin-left: 2vh;
+}
+
+.input-subGroup button img{
+    width: 1em; 
+    height: auto; 
+    margin-right: 0.5em; 
+}
+
+.input-subGroup{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-subGroupSave{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-subGroupSave button{
+    width: 60%;
+}

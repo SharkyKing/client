@@ -3,10 +3,12 @@ import { apiPaths } from '../../Additional/serverPaths.js';
 
 //IMPORTAI
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bcrypt from 'bcryptjs';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import {auth} from "../../Secure/firebase.js"
 
 //CUSTOM IMPORTAI
 import {getText} from '../../Languages/languages'
@@ -17,7 +19,7 @@ import { paths } from '../../Additional/paths.js';
 //CSS IMPORTAS
 import './signin.css'
 
-function SignIn({ login })  {
+function SignIn()  {
 
     const navigate = useNavigate();
 
@@ -66,8 +68,12 @@ function SignIn({ login })  {
             const match = await bcrypt.compare(password, storedPassword);
             
             if (match) {
-              login(id);
-              navigate(paths.PROFILE);
+              signInWithEmailAndPassword(auth, email, password).then((useCredential) => {
+                console.log(useCredential)
+                navigate(paths.PROFILE);
+              }).catch((error) => {
+                console.log(error)
+              })
             } else {
               setSubmissionFailedMsg(getText('signInUp.signin.incorrectUserOrPass', lang));
               setSubmissionFailed(true);

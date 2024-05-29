@@ -18,11 +18,11 @@ import Fallback from './SchedulerComponents/Fallback';
 import {getText} from '../../../Languages/languages'
 import {Button, Textbox, PersonCard} from '../../../Components/imports.js'
 //CSS IMPORTAS
-import './ProfileWorktimeSettings.css';
+import './SchedulerMain.css';
 
 const ClassBasedComponent = lazy(() => import('./SchedulerComponents/classbasedScheduler.js'));
 //https://github.com/react-scheduler/react-big-schedule
-function ProfileWorktimeSettings() {
+function SchedulerMain() {
     const [type, setType] = useState('class-based');
 
     const items = [
@@ -49,4 +49,4 @@ function ProfileWorktimeSettings() {
 
 }
 
-export default ProfileWorktimeSettings;
+export default SchedulerMain;

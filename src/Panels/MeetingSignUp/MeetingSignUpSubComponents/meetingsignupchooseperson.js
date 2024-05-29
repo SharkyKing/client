@@ -5,13 +5,29 @@ import Cookies from 'universal-cookie';
 import {getText} from '../../../Languages/languages.js'
 import { validateEmail, validateName, isAllEmpty } from '../../../Additional/validationutils.js';
 import Swal from 'sweetalert2';
-
+import { apiPaths } from '../../../Additional/serverPaths.js'
+import axios from 'axios';
 //CSS IMPORTAS
 import './meetingsignupchooseperson.css'
 function MeetingSignUpChoosePerson({ setStateChange, State, setChosenConsultant }) {
     const cookies = new Cookies();
     const lang = cookies.get('lang');
     const navigate = useNavigate();
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+      // Fetch users from the backend
+      const fetchUsers = async () => {
+          try {
+              const response = await axios.get(apiPaths.getAllUsers());
+              setUsers(response.data);
+          } catch (error) {
+              console.error('Error fetching users:', error);
+          }
+      };
+
+      fetchUsers();
+    }, []);
 
     const  handleNext = () => {
       Swal.fire({
@@ -35,14 +51,20 @@ function MeetingSignUpChoosePerson({ setStateChange, State, setChosenConsultant 
         Pasirinkite specialistą!
     </h1>
     <div className="Persons-Container">
-        <PersonCard imgSource={'/images/doctor1.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor2.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor3.jpeg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor4.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor1.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor2.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor3.jpeg'} onClick={handleNext} setState={setChosenConsultant}/>
-        <PersonCard imgSource={'/images/doctor4.jpg'} onClick={handleNext} setState={setChosenConsultant}/>
+        {users.map((user) => (
+            <PersonCard
+                key={user.id}
+                imgSource={'/images/doctor1.jpg'} // Assuming you have a default avatar image
+                name={`${user.FirstName} ${user.LastName}`} // Assuming you have a name field
+                speciality={'spec'}
+                setState={setChosenConsultant}
+                info={'infoinfo'}
+                onClick={() => {
+                    setChosenConsultant(user); // Pass the chosen user back to the parent component
+                    handleNext();
+                }}
+            />
+        ))}
     </div>
     </>
   );

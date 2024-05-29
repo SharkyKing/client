@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 import moment from 'moment';
 
-import ProfileWorktimeSettings from "./ProfileSubComponents/ProfileWorktimeSettings.js";
+import ProfileSettings from "./ProfileSubComponents/ProfileSettings.js";
 
 //CUSTOM IMPORTAI
 import {getText} from '../../Languages/languages'
@@ -16,33 +16,29 @@ import {Button, Textbox, PersonCard} from '../../Components/imports.js'
 import './profileMain.css';
 const ProfileTabStates = {
     MAIN: 0,
-    WORKTIME: 1,
     TEMPLATES: 2,
   };
 
 function ProfileMain() {
-    const [ProfileTabState, setProfileTabState] = useState(ProfileTabStates.WORKTIME);
+    const [ProfileTabState, setProfileTabState] = useState(ProfileTabStates.MAIN);
 
     return (
         <>
             <div className='profile-tab-control'>
-                <Button>Pagrindinis</Button>
-                <Button>Užimtumas</Button>
-                <Button>Šablonai</Button>
+                <Button onClick={() => setProfileTabState(ProfileTabStates.MAIN)} className={ProfileTabState === ProfileTabStates.MAIN ? 'active' : ''}>Pagrindinis</Button>
+                <Button onClick={() => setProfileTabState(ProfileTabStates.TEMPLATES)} className={ProfileTabState === ProfileTabStates.TEMPLATES ? 'active' : ''}>Šablonai</Button>
             </div>
+            <div className='profile-containers'>
             {ProfileTabState === ProfileTabStates.MAIN && (
                 <>
-                </>
-            )}
-            {ProfileTabState === ProfileTabStates.WORKTIME && (
-                <>
-                    <ProfileWorktimeSettings/>
+                    <ProfileSettings/>
                 </>
             )}
             {ProfileTabState === ProfileTabStates.TEMPLATES && (
                 <>
                 </>
             )}
+            </div>
         </>
     );
 

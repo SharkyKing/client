@@ -7,15 +7,15 @@
 .profile-tab-control button{
     margin-left: 20px;
     border-radius: 0;
+    margin-bottom: 20px;
 }
 
-.profile-container{
-    margin: 20px;
+.profile-tab-control .active {
+    background-color:var(--dark-color);
+    color: var(--light-color);
+}
+
+.profile-containers{
     height: 80vh;
-}
-
-.profile-data-container{
-    background-color: blue;
-    height: 50%;
-    width: 40%;
+    width: 100%;
 }

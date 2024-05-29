@@ -1,17 +1,18 @@
   .nav-item-signout {
-    margin-right: 20px;
+    margin-right: 2vw;
     transition: transform 0.2s ease-in-out; 
   }
   
   .nav-item-signout:hover {
-    transform: translateY(-5px); 
+    transform: translateY(-0.5vh);
   }
 
   .nav-links-signout {
     color: var(--dark-color);
     text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 1vh 1.5vw;
+    border-radius: 0.5vw;
+    font-size: 2vh;
   }
   
   .nav-links-signout:hover {

@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import './personCard.css'; // Import the CSS file for styling (optional)
 import {Button, Textbox} from '../imports'
 
-function PersonCard({ onClick, imgSource, className, setState }) {
+function PersonCard({ onClick, imgSource, className, setState, name, speciality, info }) {
   const [useSpecialty, setUseSpecialty] = useState(true);
   
   const  handleNext = () => {
@@ -16,16 +16,16 @@ function PersonCard({ onClick, imgSource, className, setState }) {
           <div className='personCard-image-container'>
               <img className='personCard-image' src={imgSource} alt="cardImage" />
           </div>
-          <p className='personCard-data-name'>Vardas Pavardė</p>
+          <p className='personCard-data-name'>{name}</p>
       </div>
       <div className="personData-info">
         <div className='personData-info-role'>
             {useSpecialty &&
-                <p>Specialybė</p>
+                <p>{speciality}</p>
             }
         </div>
         <div className="personData-info-about">
-            <p>Info</p>
+            <p>{info}</p>
         </div>
         <div className="personData-info-confirm">
           <Button onClick={handleNext}>Pasirinkti specialistą</Button>

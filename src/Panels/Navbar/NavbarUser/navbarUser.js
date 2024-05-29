@@ -22,12 +22,17 @@ function NavbarUser({ logout })  {
         </NavLink>
         <ul className="nav-menu">
           <li className="nav-item">
+            <NavLink to={paths.WORKTIME} className="nav-links" activeclassname="active">
+              Užimtumas
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to={paths.WAITING} className="nav-links" activeclassname="active">
               {getText('navbarUser.waiting',lang)}
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to={paths.JOINROOM} className="nav-links" activeclassname="active">
+            <NavLink to={paths.ROOM} className="nav-links" activeclassname="active">
               {getText('navbarUser.room',lang)}
             </NavLink>
           </li>

@@ -2,29 +2,26 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavbarUser from './Panels/Navbar/NavbarUser/navbarUser.js';
 import NavbarGuest from './Panels/Navbar/NavbarGuest/navbarGuest.js';
-import React, { useState } from 'react';
+import React, { useState, useEffect, Navigate  } from 'react';
 import { paths } from './Additional/paths';
-import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, ProfileMain, MeetingSignUp } from './Panels/imports.js'
+import {SignIn, SignUp, Home, Room, RoomJoin, Waiting, ProfileMain, MeetingSignUp, Worktime } from './Panels/imports.js'
 import Cookies from 'universal-cookie';
 import { SocketProvider } from './Panels/Room/Socket.js'; 
+import {AuthDetails, useSignOut} from './Secure/AuthDetails.js';
+import { auth } from "./Secure/firebase.js";
+import JoinRoom from './Panels/Room/joinroom.js';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const cookies = new Cookies();
   
   cookies.set('lang', 'en', { path: '/' });
 
-  const login = (userID) => {
-    setIsLoggedIn(true);
-    cookies.set('userID', userID, { path: '/' });
-    cookies.set('logged', true, { path: '/' });
-    console.log(cookies.get('userID'));
-  };
+  const signOut = useSignOut();
 
   const logout = () => {
     setIsLoggedIn(false);
-    cookies.set('logged', false, { path: '/' });
-    cookies.remove('userID');
+    signOut();
   };
 
   return (
@@ -33,17 +30,19 @@ function App() {
         <div className="App">
           {isLoggedIn ? <NavbarUser logout={logout} /> : <NavbarGuest />}
           <Routes>
-            <Route path={paths.HOME} element={<Home />} />
-            <Route path={paths.SIGNIN} element={<SignIn login={login}  />} />
-            <Route path={paths.SIGNUP} element={<SignUp login={login}/>} />
-            <Route path={paths.ROOM} element={<Room />} />
-            <Route path={paths.JOINROOM} element={<RoomJoin/>}/>
-            <Route path={paths.WAITING} element={<Waiting />} />
-            <Route path={paths.PROFILE} element={<ProfileMain />} />
-            <Route path={paths.MEETINGSIGNUP} element={<MeetingSignUp />} />
+            <Route path={paths.HOME} element=           {isLoggedIn ? <ProfileMain /> : <Home />} />  /* Guest path */
+            <Route path={paths.SIGNIN} element=         {isLoggedIn ? <ProfileMain /> : <SignIn />} />  /* Guest path */
+            <Route path={paths.SIGNUP} element=         {isLoggedIn ? <ProfileMain /> : <SignUp />} />  /* Guest path */
+            <Route path={paths.ROOM} element=           {isLoggedIn ? <Room /> : <Home />} />  /* Secure path */
+            <Route path={paths.JOINROOM} element=       {isLoggedIn  ? <ProfileMain /> : <JoinRoom />} />    /* Guest path */
+            <Route path={paths.WAITING} element=        {isLoggedIn ? <Waiting /> : <Home />} />  /* Secure path */
+            <Route path={paths.PROFILE} element=        {isLoggedIn ? <ProfileMain /> : <Home />} />  /* Secure path */
+            <Route path={paths.MEETINGSIGNUP} element=  {isLoggedIn ? <ProfileMain /> : <MeetingSignUp />} />  /* Guest path */
+            <Route path={paths.WORKTIME} element=       {isLoggedIn ? <Worktime /> : <Home />} />  /* Secure path */
           </Routes>
         </div>
       </Router>
+      <AuthDetails setIsLoggedIn={setIsLoggedIn}/>
     </>
   );
 }

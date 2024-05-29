@@ -3,10 +3,12 @@ import { apiPaths } from '../../Additional/serverPaths.js';
 
 //IMPORTAI
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bcrypt from 'bcryptjs';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth} from "../../Secure/firebase.js"
 
 //CUSTOM IMPORTAI
 import {Button, Textbox} from '../../Components/imports.js'
@@ -20,7 +22,7 @@ import './signup.css'
 
 
 
-function SignUp({login}) {
+function SignUp() {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -89,10 +91,13 @@ function SignUp({login}) {
         setLoading(false);
         return;
       }
+      else{
+        setSubmissionFailed(false);
+      }
 
       try {
         const hashedPassword = await bcrypt.hash(formData.password, saltRounds);
-
+  
         const response = await axios.post(apiPaths.signUpPath(), {
           email,
           firstname,
@@ -105,10 +110,29 @@ function SignUp({login}) {
             setLoading(false);
             throw new Error(response.error);
         }
+        else{
+          setSubmissionFailed(false);
+        }
 
         resetForm();
         setLoading(false);
-        navigate(paths.SIGNIN);
+
+        createUserWithEmailAndPassword(auth, email, password).then((useCredential) => {
+          console.log(useCredential)
+          setSubmissionFailed(false);
+        }).catch((error) => {
+          const errorcode = error.code;
+          if (errorcode === "auth/email-already-in-use") {
+            setSubmissionFailed(true);
+            setSubmissionFailedMsg("Email is already in use.")
+            return;
+          } else {
+            console.log("Error:", error.message);
+          }
+        })
+        if(submissionFailed === false){
+          navigate(paths.SIGNIN);
+        }
       } catch (error) {
         setLoading(false);
         if (error.response) {

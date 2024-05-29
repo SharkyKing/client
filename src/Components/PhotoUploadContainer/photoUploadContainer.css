@@ -1,0 +1,17 @@
+/* PhotoUploadContainer.css */
+.upload-container {
+    width: 30vh;
+    height: 30vh;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .upload-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  

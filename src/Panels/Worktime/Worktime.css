@@ -1,0 +1,55 @@
+@keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+.meetingCard {
+    animation: slideIn 0.5s ease-out;
+}
+
+.worktime-container{
+    height: 100%;
+    width: 100%;
+}
+.worktime-tab-control{
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 5vh;
+}
+
+.worktime-tab-control button{
+    margin-right: 20px;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    height: 50%;
+}
+
+.worktime-tab-control .button:hover{
+    margin-right: 20px;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.worktime-tab-control .selected{
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.nomeetings{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-size: 2em;
+}
