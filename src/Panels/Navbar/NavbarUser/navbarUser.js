@@ -32,7 +32,7 @@ function NavbarUser({ logout })  {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to={paths.ROOM} className="nav-links" activeclassname="active">
+            <NavLink to={paths.USERROOM} className="nav-links" activeclassname="active">
               {getText('navbarUser.room',lang)}
             </NavLink>
           </li>

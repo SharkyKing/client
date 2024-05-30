@@ -1,0 +1,23 @@
+.guestjoin-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+}
+
+.guestjoin{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+}
+
+.guestjoin button{
+    margin-top: 5vh;
+    width: 50%;
+}
+
+.guestjoin .textbox-input{
+    width: 50%;
+}

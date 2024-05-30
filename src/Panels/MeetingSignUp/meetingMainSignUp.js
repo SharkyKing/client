@@ -6,12 +6,8 @@ import MeetingSignUp from "./MeetingSignUpSubComponents/meetingsignup";
 import MeetingSignUpChooseDate from "./MeetingSignUpSubComponents/meetingsignupchoosedate";
 import MeetingSignUpChoosePerson from "./MeetingSignUpSubComponents/meetingsignupchooseperson";
 
-import React, { useState, useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {Button, Textbox, PersonCard} from '../../Components/imports.js'
-import Cookies from 'universal-cookie';
-import {getText} from '../../Languages/languages.js'
-import { validateEmail, validateName, isAllEmpty } from '../../Additional/validationutils.js';
+import React, { useState, useCallback } from "react";
+import {Button} from '../../Components/imports.js'
 import Swal from 'sweetalert2';
 
 //CSS IMPORTAS
@@ -68,12 +64,7 @@ function MeetingMainSignUp(){
           }).then(async (result) => {
             if (result.isConfirmed) {
                 const inputNumber = result.value;
-                await Swal.fire({
-                    icon: "success",
-                    title: "Lauksime jūsų " + selectedMonth + "-" + selectedDay + " " + selectedTime + " h" + "\n",
-                    confirmButtonText: "Užbaigti"
-                });   
-
+                
                 const dateStr = selectedMonth + "-" + selectedDay; 
                 const timeStr = selectedTime;
 
@@ -91,6 +82,13 @@ function MeetingMainSignUp(){
                 if (response.status !== 200) {
                     throw new Error(response.error);
                 }
+
+                await Swal.fire({ 
+                    icon: "success",
+                    title: "Lauksime jūsų " + selectedMonth + "-" + selectedDay + " " + selectedTime + " h" + "\n",
+                    confirmButtonText: "Užbaigti"
+                });   
+
 
                 setStateChange(PageStates.MEETING_SIGN_UP)
                 setEmail(null);

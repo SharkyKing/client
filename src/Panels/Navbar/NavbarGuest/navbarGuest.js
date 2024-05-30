@@ -22,7 +22,7 @@ function NavbarGuest() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to={paths.JOINROOM} className="nav-links" activeclassname="active">
+            <NavLink to={paths.GUESTROOM} className="nav-links" activeclassname="active">
               {getText('navbarGuest.connect',lang)}
             </NavLink>
           </li>

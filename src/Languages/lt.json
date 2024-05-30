@@ -29,6 +29,19 @@
         "strong": "Stiprus",
         "verystrong": "Tobulas"
     },
+    "meetingsignup":{
+        "phonenoheader": "Įveskite reikiamus duomenis",
+        "fillall": "Fill all fields",
+        "validinfo": "Invalida data in fields",
+        "firstNameOnlyLetters": "First name must be only letters",
+        "lastNameOnlyLetters": "Last name must be only letters",
+        "wrongEmail": "Wrong email format",
+        "password": "Slaptažodis",
+        "email": "El. pašto adresas",
+        "firstname": "Vardas",
+        "lastname": "Pavardė",
+        "phoneno": "Telefono numeris"
+    },
     "signInUp": {
         "signup":{
             "fillall": "Užpildykite laukus",

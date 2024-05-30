@@ -12,7 +12,6 @@ import './meetingsignupchooseperson.css'
 function MeetingSignUpChoosePerson({ setStateChange, State, setChosenConsultant }) {
     const cookies = new Cookies();
     const lang = cookies.get('lang');
-    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -56,11 +55,12 @@ function MeetingSignUpChoosePerson({ setStateChange, State, setChosenConsultant 
                 key={user.id}
                 imgSource={'/images/doctor1.jpg'} // Assuming you have a default avatar image
                 name={`${user.FirstName} ${user.LastName}`} // Assuming you have a name field
-                speciality={'spec'}
+                speciality={`${user.Speciality}`}
                 setState={setChosenConsultant}
-                info={'infoinfo'}
+                info={`${user.Info}`}
                 onClick={() => {
-                    setChosenConsultant(user); // Pass the chosen user back to the parent component
+                  console.log("UserID:", user.id)
+                    setChosenConsultant(user.id); // Pass the chosen user back to the parent component
                     handleNext();
                 }}
             />

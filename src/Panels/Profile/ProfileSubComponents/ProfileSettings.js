@@ -9,6 +9,7 @@ import { auth } from '../../../Secure/firebase.js';
 import {getText} from '../../../Languages/languages'
 import {Button, Textbox, MeetingCard, PhotoUploadContainer, TextArea} from '../../../Components/imports.js'
 import { validateEmail, validateName, isAllEmpty } from '../../../Additional/validationutils.js';
+import ProfileAdditional from './ProfileAdditional.js';
 //CSS IMPORTAS
 import './ProfileSettings.css';
 import Swal from 'sweetalert2';
@@ -30,7 +31,7 @@ function ProfileSettings() {
                 const userData = response.data.user;
                 setEmail(userData.Email); 
                 setPhone(userData.Phone);
-                setInfo(userData.Info);
+                setInfo(userData.Info); 
                 setSpeciality(userData.Speciality)
                 setFullname(userData.FirstName + ' ' + userData.LastName)
             } catch (error) {
@@ -180,7 +181,7 @@ function ProfileSettings() {
                 </div>
                 <div className='profile-data-data'>
                 <div className="input-group">
-                    <div className='input-subGroup'>
+                    <div className='input-subGroup email'>
                         <Textbox type="text" value={email} placeholder={"El. pašto adresas"} onChange={handleEmailChange} readOnly/>
                         <Button onClick={HandleEmailCopy}><img src="/images/copy.png" alt="Copy Icon"/></Button>
                     </div>
@@ -203,7 +204,7 @@ function ProfileSettings() {
                 </div>
             </div>
             <div className='profile-additional'>
-
+                <ProfileAdditional/>
             </div>
         </div>
         </>

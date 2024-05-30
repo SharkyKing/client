@@ -13,8 +13,15 @@
     width: 40%;
 }
 
-.container-textbox{
+.container-fields .container-textbox{
     margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.password-strength-meter{
+  width: 40%;
 }
 
 .container-image {

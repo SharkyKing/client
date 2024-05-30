@@ -1,3 +1,25 @@
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(+100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
 .profile-settings{
     height: 80vh;
     display: flex;
@@ -7,6 +29,7 @@
 .profile-data{
     height: 100%;
     width: 30%;
+    animation: slideInFromLeft 0.5s ease-out;
 }
 
 .profile-data-photo{
@@ -22,7 +45,10 @@
 .profile-additional{
     height: 100%;
     width: 70%;
-    background-color: blue;
+    background-color: var(--light-color);
+    border-radius: 10vh;
+    margin-right: 2vh;
+    animation: slideInFromRight 0.5s ease-out;
 }
 
 .profile-data-photo{
@@ -42,6 +68,11 @@
 
 .input-subGroup{
     margin-top: 2vh;
+}
+
+.email .textbox-input{
+    background-color: var(--dark-color);
+    color: var(--light-color);;
 }
 
 .input-subGroup button{
