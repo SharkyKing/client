@@ -6,7 +6,6 @@ import React, { useState, useEffect, Navigate  } from 'react';
 import { paths } from './Additional/paths';
 import {SignIn, SignUp, Home, GuestSide, UserSide, Waiting, ProfileMain, MeetingSignUp, Worktime } from './Panels/imports.js'
 import Cookies from 'universal-cookie';
-import { SocketProvider } from './Panels/Conferencing/ConferencingHelpers/SocketProvider.js'
 import {AuthDetails, useSignOut} from './Secure/AuthDetails.js';
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
 
   return (
     <>
-      <SocketProvider>
       <Router>
         <div className="App">
           {isLoggedIn ? <NavbarUser logout={logout} /> : <NavbarGuest />}
@@ -41,7 +39,6 @@ function App() {
           </Routes>
         </div>
       </Router>
-      </SocketProvider>
       <AuthDetails setIsLoggedIn={setIsLoggedIn}/>
     </>
   );

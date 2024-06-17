@@ -4,4 +4,5 @@ export { default as PersonCard } from './PersonCard/personCard.js';
 export { default as MeetingCard } from './MeetingCard/MeetingCard.js'; 
 export { default as PhotoUploadContainer } from "./PhotoUploadContainer/photoUploadContainer.js";
 export { default as TextArea } from "./TextArea/TextArea.js";
+export { default as ChatBox } from "./ChatBox/ChatBox.js";
 export { default as VideoComponent } from "./Video/VideoComponent.js";

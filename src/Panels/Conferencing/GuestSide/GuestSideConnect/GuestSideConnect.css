@@ -18,29 +18,19 @@
     height: 80vh;
 }
 
-.user-userjoin-videplayer{
+.guest-userjoin-videplayer{
+   
+    background-color: var(--primary-color);;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.guest-guestjoin-videplayer{
     position: absolute;
     top: 2vh; 
     left: 1vw; 
     z-index: 10; 
     border-style: solid;
     border-width: 2px;
-}
-
-.user-guestjoin-videplayer{
-    background-color:  var(--primary-color);
-    position: absolute;
-    top: 0;
-    left: 0;
-
-}
-
-.userjoin-videocontrols{
-    display: flex;
-    flex-direction: row;
-    padding: 1vh;
-}
-
-.userjoin-videocontrols h4{
-    width: 15vw;
 }

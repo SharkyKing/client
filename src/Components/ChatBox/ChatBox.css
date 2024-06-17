@@ -1,0 +1,24 @@
+.textArea-input {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: inherit;
+    margin-bottom: 10px;
+  }
+  
+  .user-message {
+    background-color: #e0f7fa; /* Light blue background for user messages */
+    align-self: flex-end; /* Align user messages to the right */
+    text-align: right;
+  }
+  
+  .client-message {
+    background-color: #f1f1f1; /* Light gray background for client messages */
+    align-self: flex-start; /* Align client messages to the left */
+    text-align: left;
+  }
+  
